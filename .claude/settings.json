@@ -12,7 +12,8 @@
       "Bash(git diff *)",
       "Bash(gh pr *)",
       "Bash(jest *)",
-      "Bash(playwright *)"
+      "Bash(playwright *)",
+      "Bash(npx prettier *)"
     ],
     "ask": [
       "Bash(git push *)",
@@ -31,6 +32,19 @@
       "Bash(rm -rf *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write \"$CLAUDE_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      }
     ]
   },
   "env": {
